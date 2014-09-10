@@ -18,10 +18,36 @@ namespace MakingChange
             int change;
             int notes;
 
-        
+        while (true) 
+        {
+                 try
+                      {
+
             // Input total
             Console.Write("Ange totalsumma: ");
             totalCost = double.Parse(Console.ReadLine());
+                     break;
+                     }
+            catch
+                      {
+
+     
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine ("Totalsumman måste vara en siffra.");
+                    Console.ResetColor();
+                    return;
+                       }
+        }
+                 if (totalCost < 1)
+                {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine ("Totalsumman är för liten. Köpet kan inte genomföras.");
+            
+                Console.ResetColor();
+                
+               return;
+                }
+
            
             
 
@@ -34,6 +60,16 @@ namespace MakingChange
             // round off öre
             amountOwed = (uint)Math.Round(totalCost);
             roundingOffAmount = totalCost - amountOwed;
+
+            if (cashPaid < amountOwed)
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine("FEL! Erhållet belopp felaktig.");
+                Console.ResetColor();
+                return;
+
+
+            }
 
        
             //Calculate change
@@ -53,32 +89,32 @@ namespace MakingChange
            // How many of each note
             notes = change / 500;
 
-            if (notes > 0)
+            if (notes >= 0)
            
                { Console.WriteLine("Antal 500-lappar \t :{0}", notes);
                 change = change % 500;
                     }
 
              notes = change / 100;
-             if (notes > 0)
+             if (notes >= 0)
              {
                  Console.WriteLine("Antal 100-lappar \t :{0}", notes);
                  change = change % 100;
              }
              notes = change / 20;
-             if (notes > 0)
+             if (notes >= 0)
              {
                  Console.WriteLine("Antal 20-lappar \t :{0}", notes);
                  change = change % 20;
              }
              notes = change / 5;
-             if (notes > 0)
+             if (notes >= 0)
              {
                  Console.WriteLine("Antal 5-kronor \t \t :{0}", notes);
                  change = change % 5;
              }
              notes = change / 1;
-             if (notes > 0)
+             if (notes >= 0)
              {
                  Console.WriteLine("Antal 1-kronor \t \t :{0}", notes);
                 }
