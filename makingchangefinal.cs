@@ -31,16 +31,17 @@ namespace MakingChange
                     Console.BackgroundColor = ConsoleColor.Red;
                     Console.WriteLine("Totalsumman måste vara en siffra.");
                     Console.ResetColor();
-                    return;
+                    
                 }
             }
-
+            //program should close if less than 1 krona
             if (totalCost < 1)
             {
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine("Totalsumman är för liten. Köpet kan inte genomföras.");
                 Console.ResetColor();
                 return;
+           
             }
               while (true)
             {
@@ -53,9 +54,8 @@ namespace MakingChange
                 catch
                 {
                     Console.BackgroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Totalsumman måste vara en siffra.");
+                    Console.WriteLine("Erhållet belopp måste vara en siffra.");
                     Console.ResetColor();
-                    return;
                 }
             }
 
@@ -64,7 +64,7 @@ namespace MakingChange
             amountOwed = (uint)Math.Round(totalCost);
             roundingOffAmount = totalCost - amountOwed;
 
-
+            //program should close if cash paid is less than amountowed
             if (cashPaid < amountOwed)
             {
                 Console.BackgroundColor = ConsoleColor.Red;

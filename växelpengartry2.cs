@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication5
+namespace makingChangeversion2
 {
     class Program
     {
@@ -23,18 +23,25 @@ namespace ConsoleApplication5
                      {//input total
                     Console.Write("Ange totalsumma: ");
                     totalCost = double.Parse(Console.ReadLine());
+                    
              
          //error message if wrong
                     }
+                catch
+                     {Console.BackgroundColor = ConsoleColor.Red;
+                     Console.WriteLine("FEL! Försök igen");
+                    Console.ResetColor();
+                     }
+
                       if (totalCost < 1) //if this doesn't work maybe switch order?)
                         {
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.WriteLine ("Totalsumman är för liten. Köpet kan inte genomföras.");
                         Console.ResetColor();
+                        return;
                           
                         }
-                      else
-                          break;
+                 
                   }
                       
                          
@@ -65,6 +72,7 @@ namespace ConsoleApplication5
                  Console.BackgroundColor = ConsoleColor.Red;
                     Console.WriteLine ("Erhållet belopp är för litet. Köpet kunde inte genomföras.");
                     Console.ResetColor();
+                return;
                  }
 
               //Calculate change
