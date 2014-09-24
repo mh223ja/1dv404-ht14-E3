@@ -31,7 +31,7 @@ namespace MakingChange
                     Console.BackgroundColor = ConsoleColor.Red;
                     Console.WriteLine("Totalsumman måste vara en siffra.");
                     Console.ResetColor();
-                    
+
                 }
             }
             //program should close if less than 1 krona
@@ -41,15 +41,15 @@ namespace MakingChange
                 Console.WriteLine("Totalsumman är för liten. Köpet kan inte genomföras.");
                 Console.ResetColor();
                 return;
-           
+
             }
-              while (true)
+            while (true)
             {
                 try
                 {// Input erhållet belopp
-            Console.Write("Ange erhållet belopp: ");
-            cashPaid = int.Parse(Console.ReadLine());
-            break;
+                    Console.Write("Ange erhållet belopp: ");
+                    cashPaid = int.Parse(Console.ReadLine());
+                    break;
                 }
                 catch
                 {
@@ -93,28 +93,28 @@ namespace MakingChange
                 change = change % 500;
             }
             notes = change / 100;
-            
+
             if (notes >= 0)
             {
                 Console.WriteLine("Antal 100-lappar \t :{0}", notes);
                 change = change % 100;
             }
             notes = change / 20;
-            
+
             if (notes >= 0)
             {
                 Console.WriteLine("Antal 20-lappar \t :{0}", notes);
                 change = change % 20;
             }
             notes = change / 5;
-           
+
             if (notes >= 0)
             {
                 Console.WriteLine("Antal 5-kronor \t \t :{0}", notes);
                 change = change % 5;
             }
             notes = change / 1;
-           
+
             if (notes >= 0)
             {
                 Console.WriteLine("Antal 1-kronor \t \t :{0}", notes);
