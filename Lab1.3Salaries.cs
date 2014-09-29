@@ -8,7 +8,7 @@ namespace ConsoleApplication13
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             do //call for ReadInt
             {
@@ -32,10 +32,6 @@ namespace ConsoleApplication13
             while (Console.ReadKey(true).Key != ConsoleKey.Escape);
 
         }
-
-
-
-
         static void ProcessSalaries(int numberOfSalaries) //set up new method to get array
         { //set up array
             int[] salaryArray = new int[numberOfSalaries];
@@ -51,43 +47,71 @@ namespace ConsoleApplication13
 
             int medianA;
             int medianB;
-            int medianC;
+            int medianActual;
 
             if (numberOfSalaries % 2 == 0)
             {
                 medianA = medianArray[medianArray.Length / 2];
                 medianB = medianArray[medianArray.Length / 2 - 1];
-                medianC = ((medianA + medianB) / 2);
+                medianActual = ((medianA + medianB) / 2);
             }
             else
             {
-                medianC = medianArray[medianArray.Length / 2];
+                medianActual = medianArray[medianArray.Length / 2];
             }
 
             //Write out answers using currency
-            Console.WriteLine("------------------------------------------------------------------------------------------");
-            Console.WriteLine("MedianLön:{0:c0}", medianC);
+            Console.WriteLine("-----------------------------------------------------------------------------");
+            Console.WriteLine("MedianLön:{0:c0}", medianActual);
             Console.WriteLine("Medellön:{0:c0}", salaryArray.Average());
             Console.WriteLine("Lönespridning:{0:c0}", salaryArray.Max() - salaryArray.Min());
-            Console.WriteLine("------------------------------------------------------------------------------------------");
+            Console.WriteLine("------------------------------------------------------------------------------");
 
             //list salaries in three columns (if three)
 
             for (int i = 0; i < salaryArray.Length; i++)
             {
-                if ((i - 1) % 3 != 0)
+                if (i % 3 == 0)
                 {
-                  
+                    Console.WriteLine();
+                    Console.Write(salaryArray[i].ToString().PadRight(10));
+
+                }
+
                 else
                 {
-                    
+                    Console.Write(salaryArray[i].ToString().PadRight(10));
                 }
             }
         }
-        static int ReadInt(string prompt="");
+
+        static int ReadInt(string prompt)
+        {//state variables
+            string numberOfSalaries;
+            while (true)
+            {    //process number and return or catch non-numbers
+                Console.Write(prompt);
+                numberOfSalaries = (Console.ReadLine());
+
+                try
+                {
+
+                    return int.Parse(numberOfSalaries);
+
+                }
+                catch
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("FEL! '{0}' kan inte tolkas som ett heltal! Försök igen.", numberOfSalaries);
+                    Console.ResetColor();
+                }
+            }
+        }
+    }
+}    
 
 
-  }
-}
-                       
+
+
+      
 

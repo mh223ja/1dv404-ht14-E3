@@ -28,10 +28,15 @@ namespace Lab2A
                 }
                 //space before row
                 if ((row % 2) == 0)
-                { Console.Write(" "); }
+                {
+
+                    Console.Write(" ");
+                }
 
                 for (int column = 0; column < 39; column++)
-                { Console.Write("* "); }
+                {
+                    Console.Write("* ");
+                }
                 Console.ResetColor();
                 Console.WriteLine();
             }
