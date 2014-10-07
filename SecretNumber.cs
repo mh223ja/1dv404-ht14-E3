@@ -32,7 +32,7 @@ namespace _1DV402.S2.L1A
 
             else
             {
-                while (_count < MaxNumberOfGuesses) //if number is under 7
+                if(_count < MaxNumberOfGuesses) //if number is under 7
                 {
                     if (number == _number)
                     {

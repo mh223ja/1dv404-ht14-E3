@@ -14,31 +14,31 @@ namespace Clock
         int _alarmMinute;
         int _hour;
         int _minute;
-        private int p1;
-        private int p2;
+
 
 
         // use get/set with public int to get values with argument exceptions
         public int AlarmHour
+        {
+            get
             {
-                get {
-                    return _alarmHour;
-                }
+                return _alarmHour;
+            }
 
-                set
+            set
+            {
+                if (value < 0 || value > 23)
                 {
-                    if (value <0 ||value>23)
-                    {
-                        throw new ArgumentException();
-                         }
-                        _alarmHour = value;
-                    }
-                  
+                    throw new ArgumentException();
                 }
-             
-            
+                _alarmHour = value;
+            }
 
-               
+        }
+
+
+
+
 
         public int AlarmMinute
         {
@@ -51,53 +51,102 @@ namespace Clock
             {
                 if (value < 0 || value > 59)
                 {
-    throw new ArgumentException(); 
-}
+                    throw new ArgumentException();
+                }
                 _alarmMinute = value;
 
-            
+
+            }
         }
-}
-        public int hour
+        public int Hour
         {
             get
-            { 
+            {
                 return _hour;
             }
-            set 
-            { 
-                if (value<0||value>23)
-                { 
-throw new ArgumentException();
+            set
+            {
+                if (value < 0 || value > 23)
+                {
+                    throw new ArgumentException();
                 }
                 _hour = value;
             }
         }
-        public int minute
+        public int Minute
         {
-            get {
-return _minute; 
-}
-            set { 
-if (value <0||value>59)
-{
-_minute = value; 
-}
-}
+            get
+            {
+                return _minute;
+            }
+            set
+            {
+                if (value < 0 || value > 59)
+                {
+                    _minute = value;
+                }
+            }
         }
 
-//set up constructors: standard, with hour/min and with hour/min and alarm
-        public AlarmClock() : this(0, 0) { }
+        //set up constructors: standard, with hour/min and with hour/min and alarm
+        public AlarmClock() : this(0, 0) { } //standard
 
-        public AlarmClock(int hour, int minute) : 
+        public AlarmClock(int hour, int minute)
+            : this(hour, minute, 0, 0) //must use a constructor with 4 parameters
+        { }
+
+        public AlarmClock(int hour, int minute, int alarmHour, int alarmMinute) //final constructor
         {
-            // TODO: Complete member initialization
-            this.p1 = hour;
-            this.p2 = minute;
+            //give value to fields
+            Hour = hour;
+            Minute = minute;
+            AlarmHour = alarmHour;
+            AlarmMinute = alarmMinute;
+
+
+        }
+
+        public bool TickTock()
+        {
+            //shud increase minutes and hours so that it functions as a clock. If goes too high, should reset
+
+
+            if (_minute < 59)
+            {
+                _minute++;
+            }
+            else
+            {
+                _minute = 0;
+            }
+            if (_minute == 0)
+            {
+                if (_hour < 23)
+                {
+                    _hour++;
+                }
+                else
+                {
+                    _hour = 0;
+                }
+
+            }
+            if (_hour == _alarmHour && _minute == _alarmMinute)
+            { return true; }
+            else
+            {
+                return false;
+            }
+        }
+        public string toString()
+        {
+            string time = (Hour, Minute);
+            string alarm = (AlarmHour, AlarmMinute);
         }
 
     }
 }
+
 
 
 
