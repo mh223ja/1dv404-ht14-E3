@@ -77,14 +77,17 @@ namespace Clock
         {
             get
             {
-                return _minute;
+             return _minute;
             }
             set
             {
                 if (value < 0 || value > 59)
                 {
-                    _minute = value;
+                    throw new ArgumentException();
                 }
+              
+                    _minute = value;
+                
             }
         }
 
@@ -140,9 +143,9 @@ namespace Clock
         }
 
         //Create actual 'clock'
-        public string ToString()
+        public override string ToString()
         {
-           return String.Format("{0}:{1} <{2}:{3}>", _hour, _minute, _alarmHour, _alarmMinute);
+           return String.Format("{0,10}:{1:00} <{2}:{3:00}>", _hour, _minute, _alarmHour, _alarmMinute);
         }
 
     }
