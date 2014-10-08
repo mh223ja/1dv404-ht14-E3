@@ -8,56 +8,51 @@ namespace Clock
 {
     class Program
     {
-        static void Main (string[] args)
+        static void Main(string[] args)
         {
             // test one: standard constructor
             AlarmClock testOne = new AlarmClock();
-            Console.WriteLine("Test 1.");
-            Console.WriteLine("Test of standard constructor");
-            Console.WriteLine(testOne.ToString());
-            Console.WriteLine();
+            ViewTestHeader("Test 1. \n Test of standard constructor\n");
+            Console.WriteLine(testOne);
+            
 
             //test two two parameters
             AlarmClock testTwo = new AlarmClock(9, 42);
-            Console.WriteLine("Test 2.");
-            Console.WriteLine("Test of constructor with two parameters.");
-            Console.WriteLine(testTwo.ToString ());
-            Console.WriteLine();
+            ViewTestHeader("Test 2. \n Test of constructor with two parameters \n ");
+            Console.WriteLine(testTwo);
 
             //test three four parameters
             AlarmClock testThree = new AlarmClock(13, 24, 7, 35);
-            Console.WriteLine("Test 3.");
-            Console.WriteLine("Test of constructor with four parameters <13,24,7,35>");
+            ViewTestHeader("Test 3. \n Test of constructor with four parameters <13,24, 7,35> \n");
             Console.WriteLine(testThree);
+            
 
             //test four test TickTock for 13 minutes
             AlarmClock testFour = new AlarmClock(23, 58, 7, 35);
-            Console.WriteLine("Test 4.");
-            Console.WriteLine("Set AlarmClock to 23:58 and let run for 13 minutes");
-            Run(testFour,13);
-            
+            ViewTestHeader("Test 4. \n Set AlarmClock to 23:58 and let run for 13 minutes \n");
+            Run(testFour, 13);
+           
+
 
             //test five to see if the alarm works
             AlarmClock testFive = new AlarmClock(6, 12, 6, 15);
-            Console.WriteLine("Test 5.");
-            Console.WriteLine("Set AlarmClock to 6:12 and set AlarmClock for 6:15. Let run 6 miutes.");
+            ViewTestHeader("Test 5. \n Set AlarmClock to 6:12 and set Alarm for 6:15. Let run 6 minutes \n ");
             Run(testFive, 6);
-
+            
             //test6 check property error messages -try catch?
             AlarmClock testSix = new AlarmClock();
-            Console.WriteLine("Test 6.");
-            Console.WriteLine("Test properties to see if exception is thrown if the time or alarm has the wrong value");
+            ViewTestHeader("Test 6. \n Test properties to see if exception is thrown if the time or alarm has the wrong value \n");
             try
             {
                 testSix.Hour = 24;
             }
-            catch 
+            catch
             {
                 ViewErrorMessage("The hour is not within the intervall 0-23");
             }
             try
             {
-                testSix.Minute = 61;
+                testSix.Minute = 60;
             }
             catch
             {
@@ -69,44 +64,66 @@ namespace Clock
             }
             catch
             {
-                ViewErrorMessage("Alarm Hour is not within the intervall 0-23")
+                ViewErrorMessage("Alarm Hour is not within the intervall 0-23");
             }
             try
             {
+                testSix.AlarmMinute = 60;
             }
-          //test 7 check method error messages (need to add to AlarmClock**)
-            
+            catch
+            {
+                ViewErrorMessage("Alarm minute is not within the interval 0-59");
+            }
+            //test 7 check method error messages (need to add to AlarmClock**)
+            ViewTestHeader("Test 7. \n Test construct for exceptions if time or alarm are outside of interval \n ");
+            try {
+                testSix = new AlarmClock(24, 0);
+            }
+            catch {
+                ViewErrorMessage("Hour is not within the interval 0-23");
+            }
+            try { }
+            catch { }
+            try { }
+            catch { }
+            try { }
+            catch { }
         }
-       private static void Run(AlarmClock ac, int minutes)
-       {
-        for (int i =0;i<minutes; i++)
-           
-    {
-        if (ac.TickTock())
+        private static void Run(AlarmClock ac, int minutes)
         {
-            Console.BackgroundColor=ConsoleColor.Blue;
-            Console.ForegroundColor=ConsoleColor.White;
-            Console.WriteLine(ac.ToString () + "BEEP!BEEP!BEEP!BEEP!");
+            for (int i = 0; i < minutes; i++)
+            {
+                if (ac.TickTock())
+                {
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine(ac.ToString() + "BEEP!BEEP!BEEP!BEEP!");
+                    Console.ResetColor();
+                }
+                Console.WriteLine(ac.ToString());
+
+            }
+        }
+
+
+        private static void ViewErrorMessage(string message)
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
             Console.ResetColor();
-              }
-            Console.WriteLine (ac.ToString());
-
         }
-    }
-
-
-        private static void ViewErrorMessage (string message)
-       {
-           Console.BackgroundColor = ConsoleColor.Red;
-           Console.WriteLine(message);
-           Console.ResetColor();
-       }
-            
-
-
-
+        private static void ViewTestHeader(string header)
+        {
+            string horizontal = "\n ----------------------------------------------------";
+            Console.WriteLine();
+            Console.WriteLine(horizontal);
+            Console.WriteLine(header);
         }
+
+
+
     }
+}
 
 
 
