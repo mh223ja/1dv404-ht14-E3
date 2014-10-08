@@ -10,10 +10,10 @@ namespace Clock
     {
 
 
-        int _alarmHour;
-        int _alarmMinute;
-        int _hour;
-        int _minute;
+     private int _alarmHour;
+     private int _alarmMinute;
+     private int _hour;
+     private int _minute;
 
 
 
@@ -88,7 +88,7 @@ namespace Clock
             }
         }
 
-        //set up constructors: standard, with hour/min and with hour/min and alarm
+        //set up constructors: standard, with hour/min and with hour/min and alarm use this
         public AlarmClock() : this(0, 0) { } //standard
 
         public AlarmClock(int hour, int minute)
@@ -138,10 +138,11 @@ namespace Clock
                 return false;
             }
         }
-        public string toString()
+
+        //Create actual 'clock'
+        public string ToString()
         {
-            string time = (Hour, Minute);
-            string alarm = (AlarmHour, AlarmMinute);
+           return String.Format("{0}:{1} <{2}:{3}>", _hour, _minute, _alarmHour, _alarmMinute);
         }
 
     }
