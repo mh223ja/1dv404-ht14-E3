@@ -30,6 +30,12 @@ namespace Clock
             //test four test TickTock for 13 minutes
             AlarmClock testFour = new AlarmClock(23, 58, 7, 35);
             ViewTestHeader("Test 4. \n Set AlarmClock to 23:58 and let run for 13 minutes \n");
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("╔═════════════════════════════════════════════════════════════════╗");
+            Console.WriteLine("║                     Alarm Clock URLED (TM)                      ║");
+            Console.WriteLine("║                    Model nr.: 1DV402S2L2A                       ║");
+            Console.WriteLine("╚═════════════════════════════════════════════════════════════════╝");
+            Console.ResetColor();
             Run(testFour, 13);
            
 
@@ -37,6 +43,12 @@ namespace Clock
             //test five to see if the alarm works
             AlarmClock testFive = new AlarmClock(6, 12, 6, 15);
             ViewTestHeader("Test 5. \n Set AlarmClock to 6:12 and set Alarm for 6:15. Let run 6 minutes \n ");
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("╔═════════════════════════════════════════════════════════════════╗");
+            Console.WriteLine("║                     Alarm Clock URLED (TM)                      ║");
+            Console.WriteLine("║                    Model nr.: 1DV402S2L2A                       ║");
+            Console.WriteLine("╚═════════════════════════════════════════════════════════════════╝");
+            Console.ResetColor();
             Run(testFive, 6);
             
             //test6 check property error messages -try catch?
@@ -76,18 +88,31 @@ namespace Clock
             }
             //test 7 check method error messages (need to add to AlarmClock**)
             ViewTestHeader("Test 7. \n Test construct for exceptions if time or alarm are outside of interval \n ");
+                 
             try {
                 testSix = new AlarmClock(24, 0);
             }
             catch {
                 ViewErrorMessage("Hour is not within the interval 0-23");
             }
-            try { }
-            catch { }
-            try { }
-            catch { }
-            try { }
-            catch { }
+            try {
+                testSix = new AlarmClock(0, 60);
+            }
+            catch {
+                ViewErrorMessage("Minute is not within the interval 0-59");
+            }
+            try {
+                testSix = new AlarmClock(0, 0, 24, 0);
+            }
+            catch {
+                ViewErrorMessage("Alarm Hour is not within the interval 0-23");
+            }
+            try {
+                testSix = new AlarmClock(0, 0, 0, 60);
+            }
+            catch {
+            ViewErrorMessage ("Alarm Minute is not within the interval 0-59");
+            }
         }
         private static void Run(AlarmClock ac, int minutes)
         {
@@ -96,11 +121,10 @@ namespace Clock
                 if (ac.TickTock())
                 {
                     Console.BackgroundColor = ConsoleColor.Blue;
-                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine(ac.ToString() + "BEEP!BEEP!BEEP!BEEP!");
                     Console.ResetColor();
                 }
-                Console.WriteLine(ac.ToString());
+                Console.WriteLine(ac);
 
             }
         }
