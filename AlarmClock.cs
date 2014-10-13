@@ -10,10 +10,10 @@ namespace Clock
     {
 
 
-     private int _alarmHour;
-     private int _alarmMinute;
-     private int _hour;
-     private int _minute;
+        private int _alarmHour;
+        private int _alarmMinute;
+        private int _hour;
+        private int _minute;
 
 
 
@@ -35,17 +35,11 @@ namespace Clock
             }
 
         }
-
-
-
-
-
         public int AlarmMinute
         {
             get
             {
                 return _alarmMinute;
-
             }
             set
             {
@@ -54,9 +48,7 @@ namespace Clock
                     throw new ArgumentException();
                 }
                 _alarmMinute = value;
-
-
-            }
+             }
         }
         public int Hour
         {
@@ -77,7 +69,7 @@ namespace Clock
         {
             get
             {
-             return _minute;
+                return _minute;
             }
             set
             {
@@ -85,9 +77,9 @@ namespace Clock
                 {
                     throw new ArgumentException();
                 }
-              
-                    _minute = value;
-                
+
+                _minute = value;
+
             }
         }
 
@@ -145,7 +137,7 @@ namespace Clock
         //Create actual 'clock'
         public override string ToString()
         {
-           return String.Format("{0,10}:{1:00} <{2}:{3:00}>", _hour, _minute, _alarmHour, _alarmMinute);
+            return String.Format("{0,10}:{1:00} <{2}:{3:00}>", _hour, _minute, _alarmHour, _alarmMinute);
         }
 
     }
