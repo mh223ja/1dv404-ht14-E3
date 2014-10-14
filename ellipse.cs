@@ -23,12 +23,12 @@ public class Ellipse : shape
     {
         get
         {
-            return Math.PI * Math.Sqrt;
+            return Math.PI * Math.Sqrt(2 * (Length / 2) * (Length / 2) + 2 * (Width / 2) * (Width / 2));
         }
     }
 
     //method - ellipse calculation
-    public void ellipse(double Length, double Width)
+    public void ellipse(double length, double width)
     {
 
     }

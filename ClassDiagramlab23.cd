@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Geometricshapes.rectangle">
-    <Position X="3.5" Y="2.75" Width="1.5" />
+  <Class Name="GeometricShapes.Program">
+    <Position X="2.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
-      <FileName>M:\Morgan\rectangle.cs</FileName>
+      <HashCode>AAAGAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAQBAAAAAA=</HashCode>
+      <FileName>M:\Morgan\Program Lab 23.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Geometricshapes.Ellipse">
@@ -14,7 +14,14 @@
       <FileName>M:\Morgan\ellipse.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Geometricshapes.shape">
+  <Class Name="Geometricshapes.rectangle">
+    <Position X="3.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>M:\Morgan\rectangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Geometricshapes.shape" Collapsed="true">
     <Position X="2.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAAAEAAAAAEBAABAAAAAABAAAAQAAAAA=</HashCode>

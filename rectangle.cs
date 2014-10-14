@@ -21,7 +21,7 @@ public abstract class rectangle : shape
    return  (2*Length)+(2*Width);
 }
 }
-    public rectangle (double length, double width)
+    public rectangle (double length, double width): base(length,width)
     {}
 	}
 }
