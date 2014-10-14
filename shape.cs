@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Geometricshapes
 {
+    enum ShapeType
+    {
+        ellipse, rectangle
+    }
         
        public abstract class shape
         {    //create fields
@@ -16,6 +17,11 @@ namespace Geometricshapes
            public abstract double Area {
                 get;
             }
+           public abstract double Perimeter
+           {
+               get;
+           }
+
            public abstract double Length {
                 get
             {
@@ -27,10 +33,7 @@ namespace Geometricshapes
                 }
             }
            //virtual method that can be overridden 
-           public abstract double Perimeter 
-            {
-                get;
-            }
+        
         
             public double Width
             {
@@ -60,5 +63,3 @@ namespace Geometricshapes
         }
 
    }
-    
-

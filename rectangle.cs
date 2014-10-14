@@ -9,16 +9,16 @@ public abstract class rectangle : shape
     {
         get
         {
-    return length * width;
+    return Length * Width;
 }
         }
 
 	
-    public override double perimeter
+    public override double Perimeter
 {
     get
 {
-   return  (2*length)+(2*width);
+   return  (2*Length)+(2*Width);
 }
 }
     public rectangle (double length, double width)

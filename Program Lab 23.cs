@@ -4,63 +4,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Geometricshapes
+namespace GeometricShapes
 {
-        
-       public abstract class shape
-        {    //create fields
-           public  double _length;
-           public double _width;
+  
 
-            //get set properties
-           public double Area {
-                get;
-            }
-           public double Length {
-                get
-            {
-                return _length;
-            }
-                set {
-                    _length = value;
-
-                }
-            }
-            public double Perimeter 
-            {
-                get;
-            }
-        
-            public double Width
-            {
-                get
-            {
-                    return _width;
-                }
-            
-            set {
-            _width = value;
-            }
-
-                }
-            //create methods
-
-            protected void shape (double length, double width);
-           
+    class Program
+    {
+        private static int ViewMenu()
         {
-            _length=length;
-            _width = width;
+           
+                Console.Clear ();
+                Console.BackgroundColor=ConsoleColor.DarkCyan;
+                Console.ForegroundColor=ConsoleColor.White;
+                Console.WriteLine (" ╔═══════════════════════════════════╗ ");
+                Console.WriteLine (" ║          Geometric Shapes         ║ ");
+                Console.WriteLine (" ╚═══════════════════════════════════╝ ");
+                Console.BackgroundColor=ConsoleColor.Black;
+                Console.WriteLine ("\n 0. Quit");
+                Console.WriteLine ("\n 1. Ellipse");
+                Console.WriteLine ("\n 2. Rectangle");
+                Console.WriteLine("\n ═══════════════════════════════════════════\n");
+                Console.WriteLine("\n Select Choice [0-2]");
+                Console.ResetColor ();
 
- }
-            ToString (); String
+                if (int.TryParse (Console.ReadLine(), out index) && index >=0 && index <=3);
+                {
+                    return index;
+                }
 
+               
+                {
+                    Console.BackgroundColor=ConsoleColor.Red;
+                    Console.ForegroundColor=ConsoleColor.White;
+                    Console.WriteLine ("WRONG! Choose a number between 0-3");
+                    Console.BackgroundColor=ConsoleColor.DarkBlue;
+                    Console.WriteLine("\n to continue");
+                    Console.ResetColor();
+                    Console.ReadKey(true);
+                    Console.Clear();
+                    Console.CursorVisible=true;
 
-          
-                              
-                         
+                }
+                while ();
+            }
+        
 
-        }
-            
-        }
+        private static void ViewDetail(shape)
+        { }
+
+        private static ReadDoubleGreaterThanZero ()
+        {}
+        CreateShape ()
+        {}
+
     }
-
+}
+    
+}

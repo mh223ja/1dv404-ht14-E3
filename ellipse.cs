@@ -11,7 +11,7 @@ public class Ellipse : shape
 {
     //Area & Perimeter = Properties
 
-    double area
+    public override double Area
     {
         get
         {
@@ -19,16 +19,16 @@ public class Ellipse : shape
         }
     }
 
-    double perimeter
+    public override double Perimeter
     {
         get
         {
-            return Math.pi * Math.Sqrt;
+            return Math.PI * Math.Sqrt;
         }
     }
 
     //method - ellipse calculation
-    public void ellipse(double length, double width)
+    public void ellipse(double Length, double Width)
     {
 
     }
