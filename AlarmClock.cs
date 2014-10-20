@@ -84,7 +84,7 @@ namespace Clock
         }
 
         //set up constructors: standard, with hour/min and with hour/min and alarm use this
-        public AlarmClock() : this(0, 0) { } //standard
+        public AlarmClock() : (0, 0) { } //standard
 
         public AlarmClock(int hour, int minute)
             : this(hour, minute, 0, 0) //must use a constructor with 4 parameters

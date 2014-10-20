@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Geometricshapes
+namespace GeometricShapes
 {
 
-public class Ellipse : shape
+class Ellipse : Shape
 {
     //Area & Perimeter = Properties
 
@@ -23,15 +19,13 @@ public class Ellipse : shape
     {
         get
         {
-            return Math.PI * Math.Sqrt(2 * (Length / 2) * (Length / 2) + 2 * (Width / 2) * (Width / 2));
+            return Math.PI*Math.Sqrt(2*(Length / 2)*(Length / 2)+2*(Width / 2)*(Width / 2));
         }
     }
 
     //method - ellipse calculation
-    public void ellipse(double length, double width)
-    {
-
-    }
-
+    public Ellipse (double length, double width)
+        :base (length, width)
+    {}
 }
 }
