@@ -129,45 +129,81 @@ namespace FiledRecipes.Domain
         }
         public virtual void Load()
         {
-            List<Recipe> recipes = new List<Recipe>();
-            RecipeReadStatus recipeReadStatus = new RecipeReadStatus();
+            List<IRecipe> recipes = new List<IRecipe>(); //create list with reference to recipe object
+            RecipeReadStatus status = new RecipeReadStatus();
+               Recipe myRecipe;
 
-
-            using (StreamReader reader = new StreamReader("..//App_Data//Recipes.txt"))
+           //open text file
+            using (StreamReader reader = new StreamReader(_path))
             {
                 string line;
 
-                while ((line = reader.ReadLine()) != null)
+                while ((line = reader.ReadLine()) != null) //read from start to end
                 {
-
-                    switch (line)
+                    
+                       if (line == "") //if line is empty skip to next line
+                        {
+                           
+                    
+                     if (line == SectionRecipe) //if it is the start of a new recipe, the next row is the name
+                    { 
+                        status = RecipeReadStatus.New;
+                        
+                    }
+                    else if (line == SectionIngredients) //else if it is the ingredients set the status so the rows will be read as ingredients
                     {
-                        case SectionRecipe:
-                            recipeReadStatus = RecipeReadStatus.New;
-                            continue;
+                        status = RecipeReadStatus.Ingredient;
+                        }
+                          //else if it is instructions, have the status reade the lines as instructions
+                    else if (line == SectionInstructions)
+                    {
+                        status = RecipeReadStatus.Instruction;
+                    }
+                    
+                     switch (status)
+                     {
+                         case RecipeReadStatus.New:
+                              myRecipe = new Recipe (line);
+                             break;
 
-                        case SectionIngredients:
-                            recipeReadStatus = RecipeReadStatus.Ingredient;
-                            continue;
 
-                        case SectionInstructions:
-                            recipeReadStatus = RecipeReadStatus.Instruction;
-                            continue;
-                          }
-                      }
-                   }
+                         case RecipeReadStatus.Ingredient:
+                             string[] values = line.Split(';');
+                             if (values.Length !=3)
+                             {
+                                 throw new FileFormatException ();
+                             }
+                             break;
+                         case RecipeReadStatus.Instruction:
+                           Recipe myRecipe.Add(line);
+                             break;
+
+                            
+
+
+                     }
+
+                    
                 }
+            }
+        }
+        }
+
 
         // get recipes
         //write out as text file if choice 1 is selected
         //write out text file correctly
         public virtual void Save()
         {
-            StreamWriter streamwriter = new StreamWriter();
+            StreamWriter streamWriter = new StreamWriter();
 
         }
+        }
+        }
+
         //save changes permenantly replacing old version in .txt file
         //Choose number 2
 
-    }
-}
+  
+
+  
