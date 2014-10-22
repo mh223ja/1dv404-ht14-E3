@@ -127,25 +127,77 @@ namespace FiledRecipes.Domain
                 handler(this, e);
             }
         }
-        public void Load ()
-        { 
+        public void Load()
+        {
             //create List with reference to object
             List<IRecipe> recipes = new List<IRecipe>();
             //variables
             string line;
-            RecipeReadStatus status = RecipeReadStatus.Indefinite;
-            using (StreamReader streamReader = new StreamReader(_path))
-            { }
+            Recipe myRecipe = null;
+            RecipeReadStatus status = RecipeReadStatus.Indefinite; //unknown length 
             
+            { 
+            using (StreamReader streamReader = new StreamReader(_path))
+            {
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    if (line == "")
+                    //if a line is empty continue to the next line
+                    //write out recipe
+                    {
+                        if (line == SectionRecipe) //if new recipe set status as recipe name
+                        {
+                            status = RecipeReadStatus.New;
+                        }
+                        else if (line == SectionIngredients) //else if ingredient section, set status to read ingredients
+                        {
+                            status = RecipeReadStatus.Ingredient;
+                        }
+                        else if (line == SectionInstructions) //else if instruction, set to read
+                        {
+                            status = RecipeReadStatus.Instruction;
+                        }
+                        switch (status) //otherwise object is either a name, ingredient or instruction
+                        {
+                            case RecipeReadStatus.New:
+                                myRecipe = new Recipe(line);
+                                continue;
+                            case RecipeReadStatus.Ingredient:
+                                string[] value = line.Split(new char[] { ';' }); //split lines at ;
+                                if (value.Length != 3)
+                                {//throw exception if wrong format
+                                    throw new FileFormatException();
+                                }
+                                //create ingredient object and initiate
+                                Ingredient ingredient = new Ingredient();
+                                ingredient.Amount=value[0];
+                                ingredient.Measure=value[1];
+                                ingredient.Name = value[2];
 
-            //write out recipe
+
+                                continue;
+
+                            case RecipeReadStatus.Instruction:
+                                myRecipe = new Recipe(line);
+                                continue;
+
+                        }
+                    }
+                    _recipes = recipes.OrderBy(r=> r.Name).ToList();
+                }
+            }
 
 
-            //if a line is empty continue to the next line
 
-            //
+            }
+            
         }
-        public void Save ()
-        { }
+        public void Save()
+        {
+            using (StreamWriter StreamWriter = new StreamWriter(_path))
+            {
+
+            }
+        }
     }
 }
