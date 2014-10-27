@@ -160,8 +160,9 @@ namespace FiledRecipes.Domain
                         switch (status) //otherwise object is either a name, ingredient or instruction
                         {
                             case RecipeReadStatus.New:
+                                recipes.Add(myRecipe);
                                 myRecipe = new Recipe(line);
-                                continue;
+                                break;
                             case RecipeReadStatus.Ingredient:
                                 string[] value = line.Split(new char[] { ';' }); //split lines at ;
                                 if (value.Length != 3)
@@ -173,18 +174,23 @@ namespace FiledRecipes.Domain
                                 ingredient.Amount=value[0];
                                 ingredient.Measure=value[1];
                                 ingredient.Name = value[2];
-
-
-                                continue;
+                                break;
 
                             case RecipeReadStatus.Instruction:
                                 myRecipe = new Recipe(line);
-                                continue;
+                                break;
 
                         }
                     }
-                    _recipes = recipes.OrderBy(r=> r.Name).ToList();
                 }
+                recipes.TrimExcess();
+                    _recipes = recipes;
+                    recipes.OrderBy(recipe=> recipe.Name).ToList();
+                    IsModified = false; //use IsModified to indicate the list is not changed.
+                    OnRecipesChanged(EventArgs.Empty);
+
+                 
+                
             }
 
 
@@ -194,10 +200,21 @@ namespace FiledRecipes.Domain
         }
         public void Save()
         {
-            using (StreamWriter StreamWriter = new StreamWriter(_path))
+            using (StreamWriter streamWriter = new StreamWriter(_path)) //set up streamwriter and open text file
             {
+                foreach (IRecipe recipe in _recipes) //set up to write out with proper formatting
+                {
+                    streamWriter.WriteLine(SectionRecipe);
+                    streamWriter.WriteLine(recipe.Name);
+                    streamWriter.WriteLine(SectionIngredients);
 
+                    foreach (Ingredient ingredient in recipe.Ingredients) //write out ingrediants following format
+                    { streamWriter.WriteLine ("{0};{1};{2};", ingredient.Amount, ingredient.Measure, ingredient.Name);
+                    }
+                    streamWriter.WriteLine(SectionInstructions);
+                }
             }
+            IsModified = false;
         }
     }
 }
