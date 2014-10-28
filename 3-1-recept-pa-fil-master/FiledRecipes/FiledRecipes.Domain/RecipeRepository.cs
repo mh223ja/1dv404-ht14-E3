@@ -130,13 +130,12 @@ namespace FiledRecipes.Domain
         public void Load()
         {
             //create List with reference to object
+
             List<IRecipe> recipes = new List<IRecipe>();
             //variables
             string line;
-            Recipe myRecipe = null;
             RecipeReadStatus status = RecipeReadStatus.Indefinite; //unknown length 
-            
-            { 
+            Recipe myRecipe = null;
             using (StreamReader streamReader = new StreamReader(_path))
             {
                 while ((line = streamReader.ReadLine()) != null)
@@ -157,47 +156,68 @@ namespace FiledRecipes.Domain
                         {
                             status = RecipeReadStatus.Instruction;
                         }
-                        switch (status) //otherwise object is either a name, ingredient or instruction
+                        else
                         {
-                            case RecipeReadStatus.New:
-                                recipes.Add(myRecipe);
-                                myRecipe = new Recipe(line);
-                                break;
-                            case RecipeReadStatus.Ingredient:
-                                string[] value = line.Split(new char[] { ';' }); //split lines at ;
-                                if (value.Length != 3)
-                                {//throw exception if wrong format
-                                    throw new FileFormatException();
-                                }
-                                //create ingredient object and initiate
-                                Ingredient ingredient = new Ingredient();
-                                ingredient.Amount=value[0];
-                                ingredient.Measure=value[1];
-                                ingredient.Name = value[2];
-                                break;
+                            switch (status) //otherwise object is either a name, ingredient or instruction
+                            {
+                                case RecipeReadStatus.New:
+                                  
+                                    recipes.Add(myRecipe);
+                                    myRecipe = new Recipe(line);
+                                    break;
 
-                            case RecipeReadStatus.Instruction:
-                                myRecipe = new Recipe(line);
-                                break;
+                                case RecipeReadStatus.Ingredient:
 
+                                    string[] value = line.Split(new char[] { ';' }); //split lines at ;
+                                    if (value.Length != 3)
+                                    {
+
+
+                                        throw new FileNotFoundException();
+                                    }
+
+
+                                    //create ingredient object and initiate
+                                    Ingredient ingredient = new Ingredient();
+                                    ingredient.Amount = value[0];
+                                    ingredient.Measure = value[1];
+                                    ingredient.Name = value[2];
+
+
+                                    break;
+
+                                case RecipeReadStatus.Instruction:
+                                    myRecipe.Add(line);
+                                    break;
+
+                                
+
+
+                            }
+                           
                         }
+                       
                     }
+                   
                 }
-                recipes.TrimExcess();
-                    _recipes = recipes;
-                    recipes.OrderBy(recipe=> recipe.Name).ToList();
-                    IsModified = false; //use IsModified to indicate the list is not changed.
-                    OnRecipesChanged(EventArgs.Empty);
-
-                 
                 
-            }
+                recipes.TrimExcess();
+                _recipes = recipes;
+                recipes.OrderBy(recipe => recipe.Name).ToList();
+                IsModified = false; //use IsModified to indicate the list is not changed.
+                OnRecipesChanged(EventArgs.Empty);
 
 
 
             }
-            
+
         }
+
+
+
+
+
+
         public void Save()
         {
             using (StreamWriter streamWriter = new StreamWriter(_path)) //set up streamwriter and open text file
@@ -206,15 +226,19 @@ namespace FiledRecipes.Domain
                 {
                     streamWriter.WriteLine(SectionRecipe);
                     streamWriter.WriteLine(recipe.Name);
+
                     streamWriter.WriteLine(SectionIngredients);
 
                     foreach (Ingredient ingredient in recipe.Ingredients) //write out ingrediants following format
-                    { streamWriter.WriteLine ("{0};{1};{2};", ingredient.Amount, ingredient.Measure, ingredient.Name);
+                    {
+                        streamWriter.WriteLine("{0};{1};{2};", ingredient.Amount, ingredient.Measure, ingredient.Name);
+                        foreach (string instruction in recipe.Instructions)
+                            streamWriter.WriteLine(SectionInstructions);
                     }
-                    streamWriter.WriteLine(SectionInstructions);
                 }
             }
             IsModified = false;
+
         }
     }
 }
