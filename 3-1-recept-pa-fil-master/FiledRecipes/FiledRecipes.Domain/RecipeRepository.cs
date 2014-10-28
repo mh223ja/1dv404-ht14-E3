@@ -130,14 +130,17 @@ namespace FiledRecipes.Domain
         public void Load()
         {
             //create List with reference to object
-
+             
             List<IRecipe> recipes = new List<IRecipe>();
             //variables
             string line;
-            RecipeReadStatus status = RecipeReadStatus.Indefinite; //unknown length 
-            Recipe myRecipe = null;
+            try { 
+           
             using (StreamReader streamReader = new StreamReader(_path))
-            {
+            { 
+                RecipeReadStatus status = RecipeReadStatus.Indefinite; //unknown length 
+                Recipe myRecipe = null;
+            
                 while ((line = streamReader.ReadLine()) != null)
                 {
                     if (line == "")
@@ -161,19 +164,22 @@ namespace FiledRecipes.Domain
                             switch (status) //otherwise object is either a name, ingredient or instruction
                             {
                                 case RecipeReadStatus.New:
-                                  
-                                    recipes.Add(myRecipe);
+                                    if (myRecipe==null)
+                                 
+                                    { 
+                                        recipes.Add(myRecipe);
+                                    }
                                     myRecipe = new Recipe(line);
                                     break;
-
+                                    
                                 case RecipeReadStatus.Ingredient:
 
                                     string[] value = line.Split(new char[] { ';' }); //split lines at ;
-                                    if (value.Length != 3)
+                                    if (value.Length <=2)
                                     {
 
 
-                                        throw new FileNotFoundException();
+                                        throw new FileFormatException();
                                     }
 
 
@@ -183,53 +189,64 @@ namespace FiledRecipes.Domain
                                     ingredient.Measure = value[1];
                                     ingredient.Name = value[2];
 
+                                    myRecipe.Add(ingredient);
 
                                     break;
 
                                 case RecipeReadStatus.Instruction:
                                     myRecipe.Add(line);
                                     break;
-
-                                
+                                   
+                                case RecipeReadStatus.Indefinite:
+                                    throw new FileFormatException();
 
 
                             }
-                           
+                           break;
                         }
                        
                     }
+                    
                    
                 }
-                
+                recipes.Add(myRecipe);
+              }
                 recipes.TrimExcess();
                 _recipes = recipes;
-                recipes.OrderBy(recipe => recipe.Name).ToList();
+                _recipes=recipes.OrderBy(recipe => recipe.Name).ToList();
                 IsModified = false; //use IsModified to indicate the list is not changed.
                 OnRecipesChanged(EventArgs.Empty);
 
 
-
+            }
+            catch (FormatException)
+            { 
+                throw new FileFormatException();
             }
 
         }
 
+         
+       
 
+ 
 
 
 
 
         public void Save()
         {
+            
             using (StreamWriter streamWriter = new StreamWriter(_path)) //set up streamwriter and open text file
             {
-                foreach (IRecipe recipe in _recipes) //set up to write out with proper formatting
+                foreach (var recipe in _recipes) //set up to write out with proper formatting
                 {
                     streamWriter.WriteLine(SectionRecipe);
                     streamWriter.WriteLine(recipe.Name);
 
                     streamWriter.WriteLine(SectionIngredients);
 
-                    foreach (Ingredient ingredient in recipe.Ingredients) //write out ingrediants following format
+                    foreach (var ingredient in recipe.Ingredients) //write out ingrediants following format
                     {
                         streamWriter.WriteLine("{0};{1};{2};", ingredient.Amount, ingredient.Measure, ingredient.Name);
                         foreach (string instruction in recipe.Instructions)
@@ -237,8 +254,9 @@ namespace FiledRecipes.Domain
                     }
                 }
             }
-            IsModified = false;
+           
 
         }
     }
 }
+ 
