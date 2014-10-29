@@ -10,15 +10,7 @@ namespace FiledRecipes.Views
 
     public class RecipeView : ViewBase, IRecipeView
     {
-        public void Show(IEnumerable<IRecipe> recipes)
-        {
-            foreach (IRecipe recipe in recipes) 
-            {
-                Show(recipes);
-                ContinueOnKeyPressed();
-            }
-
-        }
+        
          public void Show(IRecipe recipe)
         {//header with recipe name
             Console.Clear();
@@ -26,14 +18,14 @@ namespace FiledRecipes.Views
             ShowHeaderPanel();
             Console.WriteLine("Ingredienser");
             Console.WriteLine("-----------------------------------------------------------");
-            foreach (var ingredient in recipe.Ingredients)
+            foreach (Ingredient ingredient in recipe.Ingredients)
             {
                 Console.WriteLine(ingredient);
             }
             Console.WriteLine("Instruktioner");
             Console.WriteLine("------------------------------------------------------------");
 
-            foreach (var instruction in recipe.Instructions)
+            foreach (string instruction in recipe.Instructions)
             {
                 Console.WriteLine(instruction);
             }
@@ -41,6 +33,15 @@ namespace FiledRecipes.Views
 
         }
 
+         public void Show(IEnumerable<IRecipe> recipes)
+         {
+             foreach (IRecipe recipe in recipes)
+             {
+                 Show(recipe);
+                 ContinueOnKeyPressed();
+             }
+
+         }
 
    
     }
