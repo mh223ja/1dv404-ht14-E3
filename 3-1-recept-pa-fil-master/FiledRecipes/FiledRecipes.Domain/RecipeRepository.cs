@@ -159,83 +159,68 @@ namespace FiledRecipes.Domain
                             }
                             else
                             {//trying again with if instead of switch?
-                                if (status==RecipeReadStatus.New)
+                                if (status == RecipeReadStatus.New)
                                 {
                                     myRecipe = new Recipe(line);
-                                    recipes.Add(myRecipe);
+                                    recipes.Add(myRecipe); //add new recipe
                                 }
 
-                                else if (status==RecipeReadStatus.Ingredient) 
+                                else if (status == RecipeReadStatus.Ingredient)
                                 {
-                                    string[] value = line.Split(new char[] {';'}, StringSplitOptions.None); //set up ingredients after ;
+                                    string[] value = line.Split(new char[] { ';' }, StringSplitOptions.None); //set up ingredients after ;
 
                                     if (value.Length != 3) //stop if more than 3 
                                     {
-                                        throw new FileFormatException("FEL! Tre Ingrediens behövs!");
+                                        throw new FileFormatException("FEL! Tre Ingrediens behövs!"); //catch if too many items 
 
                                     }
 
-
-                               
-
-                                Ingredient ingredient = new Ingredient();
-                                ingredient.Amount = value[0];
-                                ingredient.Measure = value[1];
-                                ingredient.Name = value[2];
-                                myRecipe.Add(ingredient); //set in right order and add
-
-                               
+                                    Ingredient ingredient = new Ingredient();
+                                    ingredient.Amount = value[0];
+                                    ingredient.Measure = value[1];
+                                    ingredient.Name = value[2];
+                                    myRecipe.Add(ingredient); //set in right order and add
                                 }
 
                                 else if (status == RecipeReadStatus.Instruction)
                                 {
-                                    myRecipe.Add(line);
+                                    myRecipe.Add(line); //add instructions
                                 }
 
-                                else 
+                                else
                                 {
-                                    throw new FileFormatException();
+                                    throw new FileFormatException(); //find any exceptions
                                 }
-
-
                             }
-
                         }
-
                     }
                 }
-                recipes.TrimExcess();
-                _recipes = recipes.OrderBy(recipe => recipe.Name).ToList();
-                IsModified = false;
-                OnRecipesChanged(EventArgs.Empty);
+                recipes.TrimExcess(); //include trim excess
+                _recipes = recipes.OrderBy(recipe => recipe.Name).ToList(); //order by name
+                IsModified = false; // should be false
+                OnRecipesChanged(EventArgs.Empty); //parameter evargempt if onrecipeschanged called
             }
-            
+
             catch (FileFormatException)
-            {
+            { //catch exceptions
                 throw new FileFormatException();
             }
         }
 
-
-
-
-
         public void Save()
         {
-    
             using (StreamWriter streamWriter = new StreamWriter(_path))
             {
-                foreach (Recipe recipe in _recipes)
+                foreach (Recipe recipe in _recipes) //for each Recipe, write out info
                 {
                     streamWriter.WriteLine(SectionRecipe);
                     streamWriter.WriteLine(recipe.Name);
                     streamWriter.WriteLine(SectionIngredients);
 
-                    foreach (var ingredient in recipe.Ingredients)
+                    foreach (var ingredient in recipe.Ingredients) //format ingredients correctly
                     {
                         streamWriter.WriteLine("{0};{1};{2}", ingredient.Amount, ingredient.Measure, ingredient.Name);
                     }
-
 
                     streamWriter.WriteLine(SectionInstructions);
                     foreach (string instruction in recipe.Instructions)
@@ -244,14 +229,10 @@ namespace FiledRecipes.Domain
                     }
 
                 }
-                IsModified = false;
+                OnRecipesChanged(EventArgs.Empty); //EventArgs -- test passed
+                IsModified = false; //modify false --test passed
             }
-          }
-           
-        
-  
-
-
+        }
     }
 }
 

@@ -16,12 +16,14 @@ namespace FiledRecipes.Views
             Console.Clear();
             Header = recipe.Name;
             ShowHeaderPanel();
+            Console.WriteLine();
             Console.WriteLine("Ingredienser");
             Console.WriteLine("-----------------------------------------------------------");
             foreach (Ingredient ingredient in recipe.Ingredients)
             {
                 Console.WriteLine(ingredient);
             }
+            Console.WriteLine();
             Console.WriteLine("Instruktioner");
             Console.WriteLine("------------------------------------------------------------");
 
