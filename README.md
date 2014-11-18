@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 1.1 Växelpengar (A-, B-, och C-nivå)
 ====================================
 [1-1-vaxelpengar.pdf](https://github.com/1dv402/kursmaterial/raw/master/Laborationsuppgifter/1-1-vaxelpengar.pdf)
@@ -9,3 +10,9 @@ Skriv ett program som i samband med ett köp efterfrågar totalsumma och erhåll
 Eventuella fel i samband med inmatning av totalsumma och erhållet belopp ska hanteras. Det ska inte vara möjligt att ange en totalsumma mindre än en krona eller ett erhållet belopp mindre än totalsumman."
 
 ![ScreenShot](README.png)
+=======
+mh223ja1-DV404_HT14_E3_mh223ja-
+===============================
+
+Labs for 1DV404
+>>>>>>> 2a04b41806789f51170f37b36178cdd633847ec9
