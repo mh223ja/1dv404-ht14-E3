@@ -28,7 +28,9 @@ namespace Fraction
 
             if (inputDenominator == 0)
             {
+                Console.WriteLine("Cannot have 0 as a denominator!");
                 throw new FormatException();
+                
             }
          
             Fraction fractionOne = new Fraction(inputNumerator, inputDenominator);
@@ -49,11 +51,18 @@ namespace Fraction
 
             Console.WriteLine("Fraction One plus Fraction Two is: {0}", fractionThree.ToString());
 
-          Fraction fractionFour = fractionOne.Multiply(fractionTwo);
-           Console.WriteLine("Fraction One times Fraction Two is {0}", fractionFour.ToString());
-          bool equal = fractionOne.isEqualTo(fractionOne, fractionTwo);            if (equal == true)            {                Console.WriteLine("The fractions are equal");
+          Fraction fractionFour = fractionOne.Multiply(fractionTwo);
 
-            }
+           Console.WriteLine("Fraction One times Fraction Two is {0}", fractionFour.ToString());
+
+          bool equal = fractionOne.isEqualTo(fractionOne, fractionTwo);
+
+            if (equal == true)
+            {
+                Console.WriteLine("The fractions are equal");
+
+            }
+
             else{
                 Console.WriteLine("The fractions are not equal");
             }
