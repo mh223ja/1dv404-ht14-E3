@@ -9,7 +9,6 @@ namespace ConsoleApplication24
     {
         string _event;
 
-<<<<<<< HEAD
         string[] _eventArray;
         string _eventOne;
         string _eventTwo;
@@ -63,13 +62,6 @@ namespace ConsoleApplication24
                 _eventFour = EventFour;
             }
         }
-=======
-        string[] eventArray;
-        string eventOne;
-        string eventTwo;
-        string eventThree;
-        string eventFour;
->>>>>>> c96f0bc85df84804ad8ca252d0841b154fc3a732
 
 
         public string[] EventArray
@@ -77,19 +69,11 @@ namespace ConsoleApplication24
 
             get
             {
-<<<<<<< HEAD
                 return _eventArray;
             }
             set
             {
-                _eventArray = EventArray;
-=======
-                return eventArray;
-            }
-            set
-            {
-                EventArray = eventArray;
->>>>>>> c96f0bc85df84804ad8ca252d0841b154fc3a732
+                EventArray = _eventArray;
 
             }
         }
@@ -107,8 +91,7 @@ namespace ConsoleApplication24
 
             set
             {
-<<<<<<< HEAD
-                _event = GymnasticsEvent;
+                GymnasticsEvent = _event;
             }
         }
 
@@ -126,23 +109,6 @@ namespace ConsoleApplication24
 
             Console.WriteLine(eventArray);
 
-            
-
-=======
-                GymnasticsEvent = _event;
-            }
-        }
-
-        public Event(string[] eventArray, string eventOne, string eventTwo, string eventThree, string eventFour)
-        {
-
-            eventArray = EventArray;
-
-            eventArray = new string[] { eventOne, eventTwo, eventThree, eventFour };
-
-            Console.WriteLine(eventArray);
-
->>>>>>> c96f0bc85df84804ad8ca252d0841b154fc3a732
 
         }
 

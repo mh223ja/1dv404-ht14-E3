@@ -12,14 +12,10 @@ namespace ConsoleApplication24
         int _age;
         string _gender;
         string _team;
-<<<<<<< HEAD
-       
-=======
         string gymnastInfo;
      
       
 
->>>>>>> c96f0bc85df84804ad8ca252d0841b154fc3a732
 
         public string FirstName{
 
@@ -87,53 +83,14 @@ namespace ConsoleApplication24
             lastName = LastName;
             firstName = FirstName;
             team = Team;
-<<<<<<< HEAD
             gender = Gender;
 
-           string[] gymnastArray = new string[]{lastName, firstName, team, gender  
-           
+           string[] gymnastArray = new string[]{lastName, firstName, team, gender     
         };
-          
-             }
-        
-       
-
-               
-              
-
-           
+         
         }
            
 
     }     
     
-=======
-           gender = Gender;
-
-            string[] gymnastArray = new string[]{lastName, firstName, team, gender     
-        };
-            Console.Write(gymnastArray);
-
-          
-
-            
-           
-            
-
-        }
-
-   
-        public string GymnastList()
-        {
-            List<string>participantList = new List<string>();
-            participantList.Add(gymnastInfo);
-            Console.Write(participantList);
-            string allParticipants = string.Join(",", participantList.ToArray());
-            Console.Write(allParticipants);
-            return allParticipants;
-
-           
-        }
-    }
 }
->>>>>>> c96f0bc85df84804ad8ca252d0841b154fc3a732

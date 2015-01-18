@@ -50,21 +50,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="EventTests.cs" />
     <Compile Include="GymnastList.cs" />
     <Compile Include="GymnastTests.cs" />
     <Compile Include="JudgeTests.cs" />
-    <Compile Include="newUserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScoreCardTests.cs" />
-    <Compile Include="TeamTests.cs" />
-    <Compile Include="UnitTest1.cs" />
-=======
-    <Compile Include="GymnastTests.cs" />
-    <Compile Include="JudgeTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
->>>>>>> c96f0bc85df84804ad8ca252d0841b154fc3a732
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ConsoleApplication24\ConsoleApplication24.csproj">

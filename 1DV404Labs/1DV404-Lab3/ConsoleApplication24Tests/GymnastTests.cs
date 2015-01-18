@@ -5,11 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ConsoleApplication24;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-<<<<<<< HEAD
 using ConsoleApplication24.Tests;
 
-=======
->>>>>>> c96f0bc85df84804ad8ca252d0841b154fc3a732
 namespace ConsoleApplication24.Tests
 {
     [TestClass()]
@@ -46,11 +43,7 @@ namespace ConsoleApplication24.Tests
                 }
                 try
                 {
-<<<<<<< HEAD
                     gymnast.FirstName = "";
-=======
-                   gymnast.FirstName = "";
->>>>>>> c96f0bc85df84804ad8ca252d0841b154fc3a732
 
 
                 }
@@ -74,7 +67,6 @@ namespace ConsoleApplication24.Tests
             }
 
         }
-<<<<<<< HEAD
 
         public void IntegratedGymnastTest()
         {
@@ -125,13 +117,10 @@ namespace ConsoleApplication24.Tests
                 }
             }
         }
-=======
->>>>>>> c96f0bc85df84804ad8ca252d0841b154fc3a732
     }
 }
 
 
-<<<<<<< HEAD
 
 
 
@@ -143,5 +132,3 @@ namespace ConsoleApplication24.Tests
 
 
 
-=======
->>>>>>> c96f0bc85df84804ad8ca252d0841b154fc3a732

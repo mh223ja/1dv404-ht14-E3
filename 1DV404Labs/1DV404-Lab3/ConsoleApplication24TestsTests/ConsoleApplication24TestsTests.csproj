@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{662A0DC1-2C1C-4523-891B-53E4125A7FAF}</ProjectGuid>
+    <ProjectGuid>{6B7549FE-F93A-4041-842F-0F76EFB01717}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleApplication24Tests</RootNamespace>
-    <AssemblyName>ConsoleApplication24Tests</AssemblyName>
+    <RootNamespace>ConsoleApplication24TestsTests</RootNamespace>
+    <AssemblyName>ConsoleApplication24TestsTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -50,26 +50,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Include="EventTests.cs" />
-    <Compile Include="GymnastList.cs" />
-    <Compile Include="GymnastTests.cs" />
-    <Compile Include="JudgeTests.cs" />
-    <Compile Include="newUserTests.cs" />
+    <Compile Include="GymnastTestsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScoreCardTests.cs" />
-    <Compile Include="TeamTests.cs" />
-    <Compile Include="UnitTest1.cs" />
-=======
-    <Compile Include="GymnastTests.cs" />
-    <Compile Include="JudgeTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
->>>>>>> c96f0bc85df84804ad8ca252d0841b154fc3a732
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleApplication24\ConsoleApplication24.csproj">
-      <Project>{75EC728F-1A5E-4EA1-8A18-FE1A90A793BB}</Project>
-      <Name>ConsoleApplication24</Name>
+    <ProjectReference Include="..\ConsoleApplication24Tests\ConsoleApplication24Tests.csproj">
+      <Project>{662A0DC1-2C1C-4523-891B-53E4125A7FAF}</Project>
+      <Name>ConsoleApplication24Tests</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
