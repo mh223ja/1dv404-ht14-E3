@@ -1,3 +1,0 @@
-﻿------ Build started: Project: ConsoleApplication23, Configuration: Debug Any CPU ------
-  ConsoleApplication23 -> c:\users\ctjabl\documents\visual studio 2013\Projects\ConsoleApplication23\ConsoleApplication23\bin\Debug\ConsoleApplication23.exe
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
